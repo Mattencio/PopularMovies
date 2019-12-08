@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.popularmovies.retrofit.Movie;
 import com.example.popularmovies.retrofit.RetrofitUtil;
@@ -114,5 +115,7 @@ public class MainActivity extends AppCompatActivity implements RetrofitUtil.Movi
     public void onError(Throwable error) {
         error.printStackTrace();
         setLoadingVisibility(false);
+        final String errorMessage = error.getMessage();
+        Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
     }
 }
