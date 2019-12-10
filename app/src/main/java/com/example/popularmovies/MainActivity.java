@@ -80,9 +80,14 @@ public class MainActivity extends AppCompatActivity implements RetrofitUtil.Movi
         mRetrofitUtil.enqueuePopularMovies(this);
     }
 
-    private void setRecyclerViewAdapter(MoviesListAdapter adapter) {
+    private void setRecyclerViewAdapter(MoviesListAdapter newAdapter) {
         setRecyclerVisibility(true);
-        mRecyclerView.setAdapter(adapter);
+        RecyclerView.Adapter recyclerAdapter = mRecyclerView.getAdapter();
+        if (recyclerAdapter == null) {
+            mRecyclerView.setAdapter(newAdapter);
+        } else {
+            mRecyclerView.swapAdapter(newAdapter, false);
+        }
     }
 
     private void setLoadingVisibility(boolean isVisible) {
